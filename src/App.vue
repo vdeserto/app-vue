@@ -20,5 +20,8 @@ export default {
 #app {
   margin-top: 10px;
   padding: 10px 50px;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 </style>

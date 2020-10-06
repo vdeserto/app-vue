@@ -1,54 +1,88 @@
 <template>
-  <div class="container col-6">
+  <div class="center">
     <h3>Cadastrar Endereço</h3>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group label="Cep">
-        <b-form-input v-model="form.cep" @change="onSubmit"></b-form-input>
-      </b-form-group>
+    
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show"> 
+    <div class="form">
+        <input v-model="form.cep" name="cep" autocomplete="off" required @change="onSubmit">
+        <label for="cep" class="label">
+          <span class="content">CEP</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.logradouro" name="logradouro" required>
+        <label for="logradouro" class="label">
+          <span class="content">Logradouro</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.complemento" name="complemento">
+        <label id="complemento" class="label">
+          <span class="content">Complemento</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.bairro" name="bairro" required>
+        <label for="bairro" class="label">
+          <span class="content">Bairro</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.localidade" name="localidade" required>
+        <label for="localidade" class="label">
+          <span class="content">Cidade</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.uf" name="uf" required>
+        <label for="uf" class="label">
+          <span class="content">Estado</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.ddd" name="ddd" required disabled>
+        <label for="ddd" class="label">
+          <span class="content">DDD</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.ibge" name="ibge" required disabled>
+        <label for="ibge" class="label">
+          <span class="content">Cód. IBGE</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.gia" name="gia" required disabled>
+        <label for="gia" class="label">
+          <span class="content">Cód. GIA</span>
+        </label>
+    </div>
+    <div class="form">
+        <input v-model="form.siafi" name="siafi" required disabled>
+        <label for="siafi" class="label">
+          <span class="content">Cód. SIAFI</span>
+        </label>
+    </div>
+    
+    <b-container>
+      <b-row>
+        <b-col>
+        <b-button type="submit" variant="primary">Enviar</b-button>
+        </b-col>
+        <b-col>
+        <b-button type="reset" variant="danger">Limpar Campos</b-button>
+        </b-col>
+      </b-row>
+    </b-container>
 
-      <b-form-group label="Logradouro">
-        <b-form-input v-model="form.logradouro"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="Complemento">
-        <b-form-input v-model="form.complemento"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="Bairro">
-        <b-form-input v-model="form.bairro"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="Localidade">
-        <b-form-input v-model="form.localidade"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="uf">
-        <b-form-input v-model="form.uf"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="ibge">
-        <b-form-input v-model="form.ibge"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="gia">
-        <b-form-input v-model="form.gia"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="ddd">
-        <b-form-input v-model="form.ddd"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="siafi">
-        <b-form-input v-model="form.siafi"></b-form-input>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
     </b-card>
-  </div>
+</div>
+
+    
+  
 </template>
 
 <script>
@@ -113,4 +147,92 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+
+  body{
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+  }
+
+  .center{
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    margin: 2.5%;
+  }
+
+  .form {
+    width: 75%;
+    position: relative;
+    height: 50px;
+    overflow: hidden;
+    left:10%;
+  }
+
+  .form input {
+    width: 75vw;
+    height: 100%;
+    color: #595f6e;
+    padding-top: 2.5%;
+    border: none;
+    outline: none;
+  }
+
+  .form label {
+    position: absolute;
+    bottom: 0px;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid black;
+  }
+
+  .form label::after {
+    content: "";
+    position: absolute;
+    left: 0%;
+    bottom: -3px;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid #5fa8de;
+    transform: translateX(-100%);
+    transition: transform 0.3 ease;
+  }
+
+  .content {
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    transition: all 0.3s ease;
+  }
+
+  .form input:focus + .label .content, 
+  .form input:valid + .label .content,
+  .form input:disabled + .label .content{
+    transform: translateY(-75%);
+    font-size: 14px;
+    color: #5fa8d3;
+  }
+
+  .form input:focus + .label::after, 
+  .form input:valid + .label::after{
+    transform: translateX(0%);
+  }
+
+  .col{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 2.5%
+  }
+
+  label#complemento::after {
+    border:none;
+  }
+
+</style>
